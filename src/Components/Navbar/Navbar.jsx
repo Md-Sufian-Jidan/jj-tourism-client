@@ -4,10 +4,10 @@ import { AuthContext } from '../../Routes/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const handleLogout = () => {
-        logout()
+        logOut()
             .then(result => {
                 console.log(result);
                 Swal.fire({
@@ -63,7 +63,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <button className='btn btn-error' onClick={handleLogout}>Logout</button> :
+                        user ? <button onClick={handleLogout} className='btn btn-error'>Logout</button> :
                             <>
                                 <Link to={'/login'} className="btn btn-success mr-2">Login</Link>
                                 <Link to={'/register'} className="btn btn-primary">Register</Link>
