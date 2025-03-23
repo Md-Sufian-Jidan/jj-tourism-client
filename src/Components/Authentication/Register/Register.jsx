@@ -100,7 +100,6 @@ const Register = () => {
                                     }
                                 </span>
                             </div>
-                            <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn bg-[#A55B4B] mt-4">Register</button>
                         </fieldset>
                     </form>
