@@ -5,6 +5,8 @@ import Home from "../Pages/Home/Home";
 import AllTourist from "../Pages/AllTourist/AllTourist";
 import AddTouristSpot from "../Pages/AddTouristSpot/AddTouristSpot";
 import MyList from "../Pages/MyList/MyList";
+import Login from "../Components/Authentication/Login/Login";
+import Register from "../Components/Authentication/Register/Register";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
             {
                 path: '/my-list',
                 element: <MyList />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/register',
+                element: <Register />
             },
         ]
     },

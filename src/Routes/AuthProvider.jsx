@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import auth from "../Firebase/Firebase.config";
-
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 
@@ -11,14 +10,12 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     //set loading 
     const [loading, setLoading] = useState(true);
-    // setting fake data
-    const [fakeData, setFakeData] = useState([]);
     // creating user with email and password 
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
-    // GOOGLE LOGIN 
+    // google login
     const googleProvider = new GoogleAuthProvider();
     const googleLogin = () => {
         setLoading(true);
@@ -39,13 +36,7 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
-    }
-    // data.json
-    useEffect(() => {
-        fetch("/commercial.json")
-            .then(res => res.json())
-            .then(fake => setFakeData(fake));
-    }, []);
+    };
 
     // observe the user
     useEffect(() => {
@@ -55,10 +46,10 @@ const AuthProvider = ({ children }) => {
         });
         return () => {
             unsubscribe();
-        }
+        };
     });
     //all context value
-    const authInfo = { user, createUser, googleLogin, githubLogin, signInUser, logOut, loading, fakeData };
+    const authInfo = { user, createUser, googleLogin, githubLogin, signInUser, logOut, loading };
 
     return (
         <AuthContext.Provider value={authInfo}>
@@ -68,6 +59,6 @@ const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 }
 export default AuthProvider;
