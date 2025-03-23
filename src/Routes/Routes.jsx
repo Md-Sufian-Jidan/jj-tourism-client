@@ -8,6 +8,7 @@ import MyList from "../Pages/MyList/MyList";
 import Login from "../Components/Authentication/Login/Login";
 import Register from "../Components/Authentication/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import TouristDetails from "../Components/TouristDetails/TouristDetails";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
             {
                 path: '/my-list',
                 element: <PrivateRoute><MyList /></PrivateRoute>
+            },
+            {
+                path: '/spot/:id',
+                element: <TouristDetails />,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCALHOST_API}/tourist-spot/${params?.id}`)
             },
             {
                 path: '/login',

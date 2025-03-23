@@ -10,7 +10,7 @@ const TouristSpots = () => {
         fetch(`${import.meta.env.VITE_LOCALHOST_API}/tourist-spots`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setTouristSpots(data)
             })
     }, []);
@@ -23,7 +23,7 @@ const TouristSpots = () => {
             </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-5">
                 {
-                    touristSpots.map(spot => <TouristSpot key={spot?._iي} spot={spot} />)
+                    touristSpots.map(spot => <TouristSpot key={spot?._id} spot={spot} />)
                 }
             </div>
         </div>
