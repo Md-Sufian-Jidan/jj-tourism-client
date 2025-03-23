@@ -2,11 +2,9 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../Routes/AuthProvider';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 
 const AddTouristSpot = () => {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const handleAddTouristSpot = (e) => {
         e.preventDefault();
@@ -14,16 +12,16 @@ const AddTouristSpot = () => {
         const name = form.name.value;
         const email = form.email.value;
         const tourists_spot_name = form.tourists_spot_name.value;
-        const country_Name = form.country_Name.value;
+        const Country = form.country_Name.value;
         const location = form.location.value;
         const average_cost = form.average_cost.value;
         const seasonality = form.seasonality.value;
         const travel_time = form.travel_time.value;
         const totalVisitorsPerYear = form.totalVisitorsPerYear.value;
-        const photoUrl = form.photoUrl.value;
+        const image = form.photoUrl.value;
         const short_description = form.short_description.value;
 
-        const place = { name, email, tourists_spot_name, country_Name, location, average_cost, seasonality, travel_time, totalVisitorsPerYear, photoUrl, short_description }
+        const place = { name, email, Country, average_cost, image, location, seasonality, short_description, totalVisitorsPerYear, tourists_spot_name, travel_time }
 
         fetch(`${import.meta.env.VITE_LOCALHOST_API}/add-tourist-spot`, {
             method: 'POST',
@@ -38,11 +36,10 @@ const AddTouristSpot = () => {
                 if (data?.insertedId) {
                     Swal.fire({
                         title: "Success",
-                        text: "User Created Successfully",
+                        text: "Tourist Place Added Successfully",
                         icon: "success"
                     });
                     form.reset();
-                    navigate(location?.state ? location?.state : '/');
                 }
             });
     };

@@ -1,7 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 
-const TouristDetails = () => {
+const SingleTouristDetails = () => {
     const spot = useLoaderData({});
+    console.log(spot);
     const { Country, average_cost, image, location, seasonality, short_description, totalVisitorsPerYear, tourists_spot_name, travel_time } = spot || {};
     return (
         <section className="bg-white dark:bg-gray-900">
@@ -28,4 +29,4 @@ const TouristDetails = () => {
     );
 };
 
-export default TouristDetails;
+export default SingleTouristDetails;

@@ -1,7 +1,6 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const TouristSpot = ({ spot }) => {
+const TouristCard = ({ spot }) => {
     const { _id, Country, image, average_cost, totalVisitorsPerYear, travel_time, seasonality, tourists_spot_name } = spot || {}
     // console.log(spot);
     return (
@@ -24,14 +23,11 @@ const TouristSpot = ({ spot }) => {
                     <p>Seasonality : <span className="font-bold">{seasonality}</span></p>
                 </div>
                 <div className="card-actions">
-                    <Link to={`/spot/${_id}`} className="btn bg-[#C1D8C3]">View Details</Link>
+                    <Link to={`/tourist-place/${_id}`} className="btn bg-[#706D54]">View Details</Link>
                 </div>
             </div>
         </div>
     );
 };
 
-TouristSpot.propTypes = {
-    spot: PropTypes.node.isRequired,
-}
-export default TouristSpot;
+export default TouristCard;
