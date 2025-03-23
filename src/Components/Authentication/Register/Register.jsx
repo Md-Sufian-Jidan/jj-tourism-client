@@ -3,12 +3,13 @@ import { AuthContext } from "../../../Routes/AuthProvider";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../Firebase/Firebase.config";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { toast } from "react-toastify";
 
 const Register = () => {
     const [show, setShow] = useState(false);
+    const location = useLocation();
     const navigate = useNavigate();
     const { createUser } = useContext(AuthContext);
 
@@ -54,7 +55,7 @@ const Register = () => {
                                     icon: "success"
                                 });
                                 form.reset();
-                                navigate('/login');
+                                navigate(location?.state ? location?.state : '/');
                             }
                         });
                 }).catch((error) => {

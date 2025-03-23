@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../Routes/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 const Login = () => {
     const [show, setShow] = useState(false);
     const { signInUser, googleLogin, githubLogin } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -22,6 +24,7 @@ const Login = () => {
                     text: "User Login Successfully!",
                     icon: "success"
                 });
+                navigate(location?.state ? location?.state : '/');
                 form.reset();
             })
             .catch(error => {
@@ -88,20 +91,22 @@ const Login = () => {
                                 <button className="btn bg-[#27391C] mt-4">Login</button>
                             </fieldset>
                         </form>
+
+                        <div className="divider"></div>
+                        <div className="mx-5">
+                            <div onClick={handleGoogle} className="flex items-center gap-3 btn text-xl my-2 bg-[#3F7D58] text-white">
+                                <FaGoogle size={20} />
+                                <span>Google Login</span>
+                            </div>
+                            <div onClick={handleGithub} className="flex items-center gap-3 btn text-xl my-2 bg-black text-white">
+                                <FaGithub size={20} />
+                                <span>Github Login</span>
+                            </div>
+                        </div>
+
                         <p className='text-center my-2'>New to the website, <Link to={'/register'} className='text-blue-700 font-bold hover:underline'>Please Register</Link></p>
                     </div>
                 </div>
-                <div className="divider"></div>
-                    <div className="mx-5">
-                        <div onClick={handleGoogle} className="flex items-center gap-3 btn text-xl my-2 bg-[#3F7D58] text-white">
-                            <FaGoogle size={20} />
-                            <span>Google Login</span>
-                        </div>
-                        <div onClick={handleGithub} className="flex items-center gap-3 btn text-xl my-2 bg-black text-white">
-                            <FaGithub size={20} />
-                            <span>Github Login</span>
-                        </div>
-                    </div>
             </div>
         </>
     );
