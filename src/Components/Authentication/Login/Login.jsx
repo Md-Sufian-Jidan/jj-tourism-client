@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -66,6 +67,9 @@ const Login = () => {
 
     return (
         <>
+        <Helmet>
+            <title>Jj Tourism || Login</title>
+        </Helmet>
             <div className="hero">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">

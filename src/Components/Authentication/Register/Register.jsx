@@ -6,6 +6,7 @@ import auth from "../../../Firebase/Firebase.config";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     const [show, setShow] = useState(false);
@@ -76,38 +77,43 @@ const Register = () => {
     };
 
     return (
-        <div className="hero">
-            <div className="hero-content flex-col">
-                <div className="text-center lg:text-left">
-                    <p>New to Jj Tourism</p>
-                    <h1 className="text-5xl font-bold">Register Now!</h1>
-                </div>
-                <div className="card bg-[#DCA06D] w-full min-w-96 shrink-0 shadow-2xl">
-                    <form onSubmit={handleRegister} className="card-body">
-                        <fieldset className="fieldset">
-                            <label className="fieldset-label">Name</label>
-                            <input type="text" name='name' className="input bg-[#706D54]" placeholder="Your Name" />
-                            <label className="fieldset-label">Email</label>
-                            <input type="email" name='email' className="input bg-[#706D54]" placeholder="Email" />
-                            <label className="fieldset-label">Photo Url</label>
-                            <input type="text" name='photoUrl' className="input bg-[#706D54]" placeholder="Your Photo Url" />
-                            <div className='relative'>
-                                <label className="fieldset-label">Password</label>
-                                <input type={show ? "text" : "password"} name='password' className="input bg-[#706D54]" placeholder="Password" />
-                                <span className="absolute top-8 right-5" onClick={() => setShow(!show)}>
-                                    {show ?
-                                        <FaEye size={16} /> :
-                                        <FaEyeSlash size={16} />
-                                    }
-                                </span>
-                            </div>
-                            <button className="btn bg-[#A55B4B] mt-4">Register</button>
-                        </fieldset>
-                    </form>
-                    <p className="text-center my-2">Already have an account? <Link to={'/login'} className="text-blue-700 font-bold hover:underline">Please Login</Link></p>
+        <>
+            <Helmet>
+                <title>Jj Tourism || Register</title>
+            </Helmet>
+            <div className="hero">
+                <div className="hero-content flex-col">
+                    <div className="text-center lg:text-left">
+                        <p>New to Jj Tourism</p>
+                        <h1 className="text-5xl font-bold">Register Now!</h1>
+                    </div>
+                    <div className="card bg-[#DCA06D] w-full min-w-96 shrink-0 shadow-2xl">
+                        <form onSubmit={handleRegister} className="card-body">
+                            <fieldset className="fieldset">
+                                <label className="fieldset-label">Name</label>
+                                <input type="text" name='name' className="input bg-[#706D54]" placeholder="Your Name" />
+                                <label className="fieldset-label">Email</label>
+                                <input type="email" name='email' className="input bg-[#706D54]" placeholder="Email" />
+                                <label className="fieldset-label">Photo Url</label>
+                                <input type="text" name='photoUrl' className="input bg-[#706D54]" placeholder="Your Photo Url" />
+                                <div className='relative'>
+                                    <label className="fieldset-label">Password</label>
+                                    <input type={show ? "text" : "password"} name='password' className="input bg-[#706D54]" placeholder="Password" />
+                                    <span className="absolute top-8 right-5" onClick={() => setShow(!show)}>
+                                        {show ?
+                                            <FaEye size={16} /> :
+                                            <FaEyeSlash size={16} />
+                                        }
+                                    </span>
+                                </div>
+                                <button className="btn bg-[#A55B4B] mt-4">Register</button>
+                            </fieldset>
+                        </form>
+                        <p className="text-center my-2">Already have an account? <Link to={'/login'} className="text-blue-700 font-bold hover:underline">Please Login</Link></p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
