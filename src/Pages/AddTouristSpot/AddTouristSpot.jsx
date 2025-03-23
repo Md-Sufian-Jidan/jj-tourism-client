@@ -1,13 +1,52 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../Routes/AuthProvider';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddTouristSpot = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleAddTouristSpot = (e) => {
         e.preventDefault();
-    }
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const tourists_spot_name = form.tourists_spot_name.value;
+        const country_Name = form.country_Name.value;
+        const location = form.location.value;
+        const average_cost = form.average_cost.value;
+        const seasonality = form.seasonality.value;
+        const travel_time = form.travel_time.value;
+        const totalVisitorsPerYear = form.totalVisitorsPerYear.value;
+        const photoUrl = form.photoUrl.value;
+        const short_description = form.short_description.value;
+
+        const place = { name, email, tourists_spot_name, country_Name, location, average_cost, seasonality, travel_time, totalVisitorsPerYear, photoUrl, short_description }
+
+        fetch(`${import.meta.env.VITE_LOCALHOST_API}/add-tourist-spot`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(place)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data?.insertedId) {
+                    Swal.fire({
+                        title: "Success",
+                        text: "User Created Successfully",
+                        icon: "success"
+                    });
+                    form.reset();
+                    navigate(location?.state ? location?.state : '/');
+                }
+            });
+    };
+
     return (
         <div>
             <Helmet>
@@ -20,13 +59,14 @@ const AddTouristSpot = () => {
                         <div className='flex items-center gap-10'>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Name</label>
-                                <input type="text" defaultValue={user?.displayName} name='name' className="input" placeholder="Photo Url" />
+                                <input type="text" defaultValue={user?.displayName} name='name' className="input" placeholder="Name" readOnly />
                             </div>
                             <div className='flex-1'>
                                 <label className="fieldset-label">User Email</label>
-                                <input type="email" defaultValue={user?.email} name='email' className="input" placeholder="User Email" />
+                                <input type="email" defaultValue={user?.email} name='email' className="input" placeholder="User Email" readOnly />
                             </div>
                         </div>
+                        {/* tourists_spot_name country_Name */}
                         <div className='flex items-center gap-10'>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Tourist Spot Name</label>
@@ -37,6 +77,7 @@ const AddTouristSpot = () => {
                                 <input type="text" name='country_Name' className="input" placeholder="Country Name" />
                             </div>
                         </div>
+                        {/* location average_cost */}
                         <div className='flex items-center gap-10'>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Location</label>
@@ -44,9 +85,10 @@ const AddTouristSpot = () => {
                             </div>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Average Cost</label>
-                                <input type="number" className="input" placeholder="Average Cost" />
+                                <input type="number" name='average_cost' className="input" placeholder="Average Cost" />
                             </div>
                         </div>
+                        {/* seasonality travel_time */}
                         <div className='flex items-center gap-10'>
                             <div className='flex-1'>
                                 <label className="fieldset-label">seasonality</label>
@@ -54,9 +96,10 @@ const AddTouristSpot = () => {
                             </div>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Travel Time</label>
-                                <input type="text" className="input" placeholder="Travel Time" />
+                                <input type="text" name='travel_time' className="input" placeholder="Travel Time" />
                             </div>
                         </div>
+                        {/* totalVisitorsPerYear photoUrl */}
                         <div className='flex items-center gap-10'>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Total Visitors Per Year</label>
@@ -64,13 +107,12 @@ const AddTouristSpot = () => {
                             </div>
                             <div className='flex-1'>
                                 <label className="fieldset-label">Photo Url</label>
-                                <input type="text" className="input" placeholder="Photo Url" />
+                                <input type="text" name='photoUrl' className="input" placeholder="Photo Url" />
                             </div>
                         </div>
                         <label className="fieldset-label">short description</label>
-                        <textarea rows={10} cols={10} type="text" name='short_description' className="textarea textarea-lg w-full" placeholder="short description" />
-                        <div><a className="link link-hover">Forgot password?</a></div>
-                        <button className="btn btn-neutral mt-4">Login</button>
+                        <textarea rows={5} cols={5} type="text" name='short_description' className="textarea textarea-lg w-full" placeholder="short description" />
+                        <button className="btn bg-[#5F99AE] mt-4">Add Tourist Spot</button>
                     </fieldset>
                 </form>
             </div>
