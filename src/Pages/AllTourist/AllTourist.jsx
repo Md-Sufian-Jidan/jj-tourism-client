@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import TouristCard from "../../Components/TouristCard/TouristCard";
-import CommonHeadDes from "../../Common/CommonHeadDes";
+import CommonHeadDes from "../../Components/Common/CommonHeadDes";
 
 const AllTourist = () => {
     const spots = useLoaderData();

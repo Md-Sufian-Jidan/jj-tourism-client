@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TouristSpot from "../TouristSpot/TouristSpot";
-import CommonHeadDes from "../../Common/CommonHeadDes";
+import CommonHeadDes from "../Common/CommonHeadDes";
 
 
 const TouristSpots = () => {

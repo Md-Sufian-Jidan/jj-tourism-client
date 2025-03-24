@@ -8,7 +8,6 @@ const MyList = () => {
 
     const { user } = useContext(AuthContext);
     const [places, setPlaces] = useState([]);
-    // const [displayPlaces, setDisplayPlaces] = useState();
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_LOCALHOST_API}/my-list/${user?.email}`)

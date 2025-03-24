@@ -1,4 +1,4 @@
-import CommonHeadDes from "../../Common/CommonHeadDes";
+import CommonHeadDes from "../Common/CommonHeadDes";
 
 const Faq = () => {
     return (

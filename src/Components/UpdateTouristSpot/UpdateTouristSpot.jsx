@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Routes/AuthProvider";
 import Swal from "sweetalert2";
 
 const UpdateTouristSpot = () => {
     const { user } = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const spot = useLoaderData();
     const { _id, Country, average_cost, image, location, seasonality, short_description, totalVisitorsPerYear, tourists_spot_name, travel_time } = spot || {};
 
@@ -16,15 +16,15 @@ const UpdateTouristSpot = () => {
         const name = user?.displayName;
         const email = user?.email;
 
-        const tourists_spot_name = form.tourists_spot_name.value;
-        const Country = form.country_Name.value;
-        const location = form.location.value;
-        const average_cost = form.average_cost.value;
-        const seasonality = form.seasonality.value;
-        const travel_time = form.travel_time.value;
-        const totalVisitorsPerYear = form.totalVisitorsPerYear.value;
-        const image = form.photoUrl.value;
-        const short_description = form.short_description.value;
+        const tourists_spot_name = form?.tourists_spot_name?.value;
+        const Country = form?.country_Name?.value;
+        const location = form?.location?.value;
+        const average_cost = form?.average_cost?.value;
+        const seasonality = form?.seasonality?.value;
+        const travel_time = form?.travel_time?.value;
+        const totalVisitorsPerYear = form?.totalVisitorsPerYear?.value;
+        const image = form?.photoUrl?.value;
+        const short_description = form?.short_description?.value;
 
         const place = { name, email, Country, average_cost, image, location, seasonality, short_description, totalVisitorsPerYear, tourists_spot_name, travel_time };
 
@@ -43,6 +43,7 @@ const UpdateTouristSpot = () => {
                         text: "Tourist spot Update Successfully",
                         icon: "success"
                     });
+                    navigate('/my-list')
                     form.reset();
                 }
             });
