@@ -23,13 +23,13 @@ const MyList = () => {
                 <title>Jj Tourism || My List</title>
             </Helmet>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto my-5">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
+                            <th>Tourist Place Details</th>
                             <th>Country</th>
                             <th>Add By</th>
                             <th>Action</th>

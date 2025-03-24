@@ -37,8 +37,7 @@ const UpdateTouristSpot = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
-                if (data?.matchedCount) {
+                if (data?.matchedCount > 0) {
                     Swal.fire({
                         title: "Success",
                         text: "Tourist spot Update Successfully",
