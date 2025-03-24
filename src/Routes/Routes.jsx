@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import TouristDetails from "../Components/TouristDetails/TouristDetails";
 import SingleTouristDetails from "../Components/SingleTouristDetails/SingleTouristDetails";
 import UpdateTouristSpot from "../Components/UpdateTouristSpot/UpdateTouristSpot";
+import CountryCardDetails from "../Components/CountryCardDetails/CountryCardDetails";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,11 @@ export const router = createBrowserRouter([
                 path: '/update/:id',
                 element: <PrivateRoute><UpdateTouristSpot /></PrivateRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCALHOST_API}/tourist-place/${params?.id}`)
+            },
+            {
+                path: '/country/:name',
+                element: <PrivateRoute><CountryCardDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCALHOST_API}/country/${params?.name}`)
             },
             {
                 path: '/login',

@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const CountryCard = ({ country }) => {
     const { country_name, image, short_description } = country || {};
     return (
         <div>
-            <div className="card bg-base-100 shadow-sm">
+            <div className="card bg-[#255F38] h-96 shadow-sm">
                 <figure>
                     <img
-                        className="w-full h-52"
+                        className="w-full h-48"
                         src={image}
                         alt="Shoes" />
                 </figure>
@@ -15,7 +16,9 @@ const CountryCard = ({ country }) => {
                     <h2 className="card-title">{country_name}</h2>
                     <p>{short_description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn bg-[#015551]">View Details</button>
+                        <Link to={`/country/${country_name}`}>
+                            <button className="btn bg-[#015551]">visit Places</button>
+                        </Link>
                     </div>
                 </div>
             </div>
