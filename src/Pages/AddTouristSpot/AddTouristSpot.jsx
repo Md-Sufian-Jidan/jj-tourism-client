@@ -51,7 +51,7 @@ const AddTouristSpot = () => {
                 <title>Jj Tourism || Add Tourist Spot</title>
             </Helmet>
 
-            <div className="w-full bg-slate-600 shadow-2xl">
+            <div className="w-full bg-[#DCA06D] shadow-2xl my-5 rounded-xl">
                 <form onSubmit={handleAddTouristSpot} className="card-body w-3/4 mx-auto">
                     <fieldset className="fieldset">
                         <Slide direction='left' duration={3000} >
