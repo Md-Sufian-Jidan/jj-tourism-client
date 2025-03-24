@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import { Zoom } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 
 const CountryCard = ({ country }) => {
     const { country_name, image, short_description } = country || {};
     return (
-        <div>
+        <Zoom duration={3000}>
             <div className="card bg-[#255F38] h-96 shadow-sm">
                 <figure>
                     <img
@@ -22,7 +23,8 @@ const CountryCard = ({ country }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Zoom>
+
     );
 };
 
