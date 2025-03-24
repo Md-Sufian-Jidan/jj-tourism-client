@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../Routes/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyList = () => {
 
@@ -11,7 +12,7 @@ const MyList = () => {
         fetch(`${import.meta.env.VITE_LOCALHOST_API}/my-list/${user?.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setPlaces(data);
             });
     }, []);
@@ -55,9 +56,11 @@ const MyList = () => {
                                     </div>
                                 </td>
                                 <td>{place?.Country}</td>
-                                <td>{user?.email}</td>
+                                <td>{user?.displayName}</td>
                                 <th>
-                                    <button className="btn bg-[#3F7D58]">Update</button>
+                                    <Link to={`/update/${place?._id}`}>
+                                        <button className="btn bg-[#3F7D58]">Update</button>
+                                    </Link>
                                 </th>
                             </tr>)
                         }

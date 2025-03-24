@@ -10,6 +10,7 @@ import Register from "../Components/Authentication/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import TouristDetails from "../Components/TouristDetails/TouristDetails";
 import SingleTouristDetails from "../Components/SingleTouristDetails/SingleTouristDetails";
+import UpdateTouristSpot from "../Components/UpdateTouristSpot/UpdateTouristSpot";
 
 export const router = createBrowserRouter([
     {
@@ -41,7 +42,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/tourist-place/:id',
-                element: <SingleTouristDetails />,
+                element: <PrivateRoute><SingleTouristDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCALHOST_API}/tourist-place/${params?.id}`)
+            },
+            {
+                path: '/update/:id',
+                element: <PrivateRoute><UpdateTouristSpot /></PrivateRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_LOCALHOST_API}/tourist-place/${params?.id}`)
             },
             {
